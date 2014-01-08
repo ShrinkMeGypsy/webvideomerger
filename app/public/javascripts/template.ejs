@@ -1,0 +1,43 @@
+<% if(status === "pending_files") { %>
+  <%= "" %>
+<% } else if(status === "complete") { %> 
+
+  <li id="<%= id %>">
+    <img src="<%= thumbnailPath %>" class="left" width="105" height="79" />
+    <div class="left">
+      <h1>Video <%= displayId %> (<%= dateString %>)</h1>
+    </div>
+    <div class="right">
+      <input type="button" value="Delete video" class="deleteItemBtn" />
+    </div>
+    <div class="clear"></div>
+  </li>
+
+<% } else { %>
+
+  <li id="<%= id %>">
+    <div class="left">
+    <% if (status === "failed") { %>
+      <h1><%= status %>: <%= errorDescription %></h1>
+    <% } else { %>
+      <h1><%= status %>...</h1>
+    <% } %>
+      <h2>Tutor: <%= leftOriginal %> 
+      <%= (rightOriginal.length > 0)? "&amp; Student: " + rightOriginal : "" %></h2>
+    </div>
+
+    <div class="right">
+    <% if (status === "failed") { %>
+      <input type="button" value="Delete" id="deleteItemBtn" />
+    <% } else { %>
+      <input type="button" value="Cancel" class="deleteItemBtn" />
+    <% } %>
+    </div>
+
+    <div class="clear"></div>
+    <div class="progress_bar <%= status %>">
+      <div style="width: <%= progress %>%;">&nbsp;&nbsp;<%= progress %>%&nbsp;&nbsp;</div>
+    </div>
+  </li>
+
+<% } %>

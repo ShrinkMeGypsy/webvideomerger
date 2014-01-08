@@ -1,0 +1,63 @@
+<script src="/javascripts/ejs.min.js" type="text/javascript"></script>
+<script src="/javascripts/merger.js" type="text/javascript"></script>
+<script type="text/javascript">
+var maxFileSize = <%= maxFileSize %>;
+</script>
+<div class="container">
+	
+<% if (type === "tutor") { %>
+  <div class="choose">
+    <label>
+        I want to upload
+        <select name="" id="numFilesSelect">
+            <option value="1">1 video</option>
+            <option value="2" selected>2 videos</option>
+        </select>
+    </label>
+  </div>
+<% } else if (type === "student") { %>
+  <input type="hidden" name="" id="numFilesSelect" value="1"/>
+<% } %>
+
+  <div class="info">
+<% if (type === "tutor") { %>
+    Use the controls below to upload both the <u>tutor</u> and <u>student</u> videos. The process will merge them into one video which will then be added to the system.
+<% } else if (type === "student") { %>
+    Use the controls below to upload your evidence videos. Once the videos have uploaded you can navigate away or close your browser.
+<% } %>
+  </div>
+
+  <div class="new_task">
+    <form id="file_upload_form" method="post" action="" enctype="multipart/form-data">
+      <input type="hidden" id="newTaskId" value=""/>
+      <input type="hidden" id="numFiles" name="numFiles" value="2"/>
+
+<% if (type === "tutor") { %>
+      <div class="col1" id="columnTutor">
+        <b>Choose <u>tutor</u> video</b>
+        <input type="file" value="Select a file" id="fileTutor" />
+      </div>
+      <div class="col1" id="columnStudent">
+        <b>Choose <u>student</u> video</b>
+        <input type="file" value="Select a file" id="fileStudent"  />
+      </div>
+<% } else if (type === "student") { %>
+      <div class="col1" id="columnTutor">
+        <b>Choose evidence video</b>
+        <input type="file" value="Select a file" id="fileTutor" />
+      </div>
+<% } %>
+      <div class="col2">
+        <b>Click <u>upload</u></b>
+        <input type="submit" value="Upload" id="uploadFiles" />
+      </div>
+      <div class="clear"></div>
+    
+    </form>
+  </div>
+
+  <ul id="items"></ul>
+
+  <span class="helpLink"><a href="http://support.bslcourses.co.uk/customer/portal/articles/504122-my-video-s-file-size-is-over-2-0gb---how-do-i-make-it-smaller-" target="_blank">How do I make my files smaller?</a></span>
+
+</div>
